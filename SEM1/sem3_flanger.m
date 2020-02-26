@@ -16,7 +16,6 @@ n_rep = round(N/length(delay));
 delay = repmat(delay,1,n_rep+1);
 
 y = zeros(1,N);
-y = y';
 for i = 1:N
     n = delay(i);
     if n>0
