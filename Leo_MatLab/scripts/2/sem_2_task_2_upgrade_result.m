@@ -39,27 +39,104 @@ stem(X2), grid minor, title('fft x2');
 subplot(3,4,10);
 stem(X3), grid minor, title('fft x3');
 
+% hanning
+
 x1w = x1.*hanning(N)';
 x2w = x2.*hanning(N)';
 x3w = x3.*hanning(N)';
 
 subplot(3,4,3);
-plot(x1w), grid minor, title('x1 8000Hz with window');
+plot(x1w), grid minor, title('x1 8000Hz with hanning window');
 subplot(3,4,7);
-plot(x2w), grid minor, title('x2 8550Hz with window');
+plot(x2w), grid minor, title('x2 8550Hz with hanning window');
 subplot(3,4,11);
-plot(x3w), grid minor, title('x3 8750Hz with window');
+plot(x3w), grid minor, title('x3 8750Hz with hanning window');
 
 X1w = abs(fft(x1w));
 X2w = abs(fft(x2w));
 X3w = abs(fft(x3w));
 
 subplot(3,4,4);
-stem(X1w), grid minor, title('fft x1 with window');
+stem(X1w), grid minor, title('fft x1 with hanning window');
 subplot(3,4,8);
-stem(X2w), grid minor, title('fft x2 with window');
+stem(X2w), grid minor, title('fft x2 with hanning window');
 subplot(3,4,12);
-stem(X3w), grid minor, title('fft x3 with window');
+stem(X3w), grid minor, title('fft x3 with hanning window');
+
+% bartlett
+
+x1w = x1.*bartlett(N)';
+x2w = x2.*bartlett(N)';
+x3w = x3.*bartlett(N)';
+
+figure('units','normalized','outerposition',[0.5 0.5 0.5 0.5]);
+subplot(3,2,1);
+plot(x1w), grid minor, title('x1 8000Hz with bartlett window');
+subplot(3,2,3);
+plot(x2w), grid minor, title('x2 8550Hz with bartlett window');
+subplot(3,2,5);
+plot(x3w), grid minor, title('x3 8750Hz with bartlett window');
+
+X1w = abs(fft(x1w));
+X2w = abs(fft(x2w));
+X3w = abs(fft(x3w));
+
+subplot(3,2,2);
+stem(X1w), grid minor, title('fft x1 with bartlett window');
+subplot(3,2,4);
+stem(X2w), grid minor, title('fft x2 with bartlett window');
+subplot(3,2,6);
+stem(X3w), grid minor, title('fft x3 with bartlett window');
+
+% parzenwin
+
+x1w = x1.*parzenwin(N)';
+x2w = x2.*parzenwin(N)';
+x3w = x3.*parzenwin(N)';
+
+figure('units','normalized','outerposition',[0.5 0.5 0.5 0.5]);
+subplot(3,2,1);
+plot(x1w), grid minor, title('x1 8000Hz with parzenwin window');
+subplot(3,2,3);
+plot(x2w), grid minor, title('x2 8550Hz with parzenwin window');
+subplot(3,2,5);
+plot(x3w), grid minor, title('x3 8750Hz with parzenwin window');
+
+X1w = abs(fft(x1w));
+X2w = abs(fft(x2w));
+X3w = abs(fft(x3w));
+
+subplot(3,2,2);
+stem(X1w), grid minor, title('fft x1 with parzenwin window');
+subplot(3,2,4);
+stem(X2w), grid minor, title('fft x2 with parzenwin window');
+subplot(3,2,6);
+stem(X3w), grid minor, title('fft x3 with parzenwin window');
+
+% triang
+
+x1w = x1.*triang(N)';
+x2w = x2.*triang(N)';
+x3w = x3.*triang(N)';
+
+figure('units','normalized','outerposition',[0.5 0.5 0.5 0.5]);
+subplot(3,2,1);
+plot(x1w), grid minor, title('x1 8000Hz with triang window');
+subplot(3,2,3);
+plot(x2w), grid minor, title('x2 8550Hz with triang window');
+subplot(3,2,5);
+plot(x3w), grid minor, title('x3 8750Hz with triang window');
+
+X1w = abs(fft(x1w));
+X2w = abs(fft(x2w));
+X3w = abs(fft(x3w));
+
+subplot(3,2,2);
+stem(X1w), grid minor, title('fft x1 with triang window');
+subplot(3,2,4);
+stem(X2w), grid minor, title('fft x2 with triang window');
+subplot(3,2,6);
+stem(X3w), grid minor, title('fft x3 with triang window');
 
 % trailing zeros
 
