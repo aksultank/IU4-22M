@@ -61,11 +61,11 @@ title('Imagine part of FFT result');
 
 subplot(4,5,14);
 stem(abs(X_fft)); grid minor;
-title('Amplitude of MFT result');
+title('Amplitude of FFT result');
 
 subplot(4,5,15);
 stem(angle(X_fft)*180/pi); grid minor;
-title('Phase of MFT result');
+title('Phase of FFT result');
 
 Xm_fft = 2*abs(X_fft)/N;
 F = (0:N-1)*fs/N;
