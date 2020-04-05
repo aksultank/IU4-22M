@@ -56,6 +56,7 @@ stem(abs(X)), grid minor, title('fft of merged signal');
 [WX,freq] = wft(x,fs,'f0',0.2);
 
 figure('units','normalized','outerposition',[0.5 0 0.5 1]);
-srf = surf(ts, freq, abs(WX));
+srf = surf(ts, freq, abs(WX), 'FaceAlpha', 0.5);
+colorbar;
 set(srf, 'LineStyle', 'none');
 xlabel('Time'); ylabel('Frequency'); zlabel('Amplitude');
