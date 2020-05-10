@@ -1,8 +1,8 @@
-clear;
+clear, clc, close all;
 
 wav_path = '../../Songs/Red_alert_3_USSR_anthem.wav';
 
-[x,fs] = audioread(wav_path,[900000,902500]);
+[x,fs] = audioread(wav_path,[900000,901500]);
 sound(x,fs);
 n = length(x);
 
