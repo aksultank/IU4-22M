@@ -56,10 +56,10 @@ iof = round(conv(fltr.Numerator,io));
 qof = round(conv(fltr.Numerator,qo));
 
 figure;
-subplot(2,1,1);
+subplot(3,1,1);
 plot(iof), grid on;
 title('SynPhase part of demodulated signal after LP-filter');
-subplot(2,1,2);
+subplot(3,1,2);
 plot(qof), grid on;
 title('Quadrature part of demodulated signal after LP-filter');
 
