@@ -7,7 +7,7 @@ ts = 0 : 1/fs : end_s-1/fs;
 n = length(ts);
 
 fc = cos(2*pi*4000*ts);
-fm = sin(2*pi*200*ts)+0.5*sin(2*pi*100*ts)+0.25*sin(2*pi*550*ts);
+fm = sin(2*pi*350*ts);
 
 x = fc.*fm;
 

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 def dft_chpeck(fx):
-    print('start dft...')
+    # print('start dft...')
     fx = np.asarray(fx, dtype=complex)
     m = fx.shape[0]
     fu = fx.copy()
@@ -15,12 +15,12 @@ def dft_chpeck(fx):
             tmp = fx[x]*np.exp(-2j*np.pi*x*u*np.divide(1, m, dtype=complex))
             tmp_sum += tmp
         fu[u] = tmp_sum
-    print('success dft...')
+    # print('success dft...')
     return fu
 
 
 def fft_chpeck(fx):
-    print('start fft...')
+    # print('start fft...')
     fx = np.asarray(fx, dtype=complex)
     m = fx.shape[0]
     min_div_size = 4
@@ -35,18 +35,18 @@ def fft_chpeck(fx):
         f_u = fx_even + fx_odd * w_ux_2k[:m//2]
         f_u_plus_k = fx_even + fx_odd * w_ux_2k[m//2:]
         fu = np.concatenate([f_u, f_u_plus_k])
-    print('success fft...')
+    # print('success fft...')
     return fu
 
 
 def ifft_chpeck(fu):
-    print('start ifft...')
+    # print('start ifft...')
     fu = np.asarray(fu, dtype=complex)
     fu_conjugate = np.conjugate(fu)
     fx = fft_chpeck(fu_conjugate)
     fx = np.conjugate(fx)
     fx = fx / fu.shape[0]
-    print('success ifft...')
+    # print('success ifft...')
     return fx
 
 
@@ -121,25 +121,21 @@ def get_am_data(am_file_path):
 def input_am_spec():
     print('Enter program specs:')
     print('     Enter path to file with AM signal data:')
-    # uncomment that when all works
-    # am_file_path = input()
+    am_file_path = input()
     print('     Enter sampling frequency:')
-    # uncomment that when all works
-    # am_fs = input()
+    am_fs = int(input())
     print('     Enter dpi:')
-    # uncomment that when all works
-    # am_dpi = input()
+    am_dpi = int(input())
     print('     Enter width:')
-    # uncomment that when all works
-    # am_width = input()
+    am_width = int(input())
     print('     Enter height:')
-    # uncomment that when all works
-    # am_height = input()
-    am_file_path = '../test_gen_AM_MatLab/test_file.txt'
-    am_fs = 40000
-    am_dpi = 100
-    am_width = 640
-    am_height = 360
+    am_height = int(input())
+    # test defines
+    # am_file_path = '../test_gen_AM_MatLab/test_file.txt'
+    # am_fs = 40000
+    # am_dpi = 100
+    # am_width = 640
+    # am_height = 360
     return am_file_path, am_fs, am_dpi, am_width, am_height
 
 
