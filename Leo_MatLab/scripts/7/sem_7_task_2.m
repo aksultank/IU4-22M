@@ -38,7 +38,7 @@ ts = [ts1 ts2 ts3 ts4 ts5];
 n = length(ts);
 
 figure('Name','Spectral analysis, signal & FFT','units','normalized',...
-    'outerposition',[0 0.5 1 0.5]);
+    'outerposition',[0 0 1 1]);
 
 subplot(2,1,1);
 plot(ts, data);
@@ -57,14 +57,10 @@ title('Spectr of signal');
 xlabel('Frequency');
 ylabel('Amplitude');
 
-figure('Name','Spectral analysis, continous wavelet transform',...
-    'units','normalized','outerposition',[0 0 0.5 0.5]);
-
-cwt(data,'morse',fs);
 fb = cwtfilterbank('SignalLength',length(data),'SamplingFrequency',fs,...
     'FrequencyLimits',[fs1 fs5]);
 
 figure('Name','Spectral analysis, continous wavelet transform with fb',...
-    'units','normalized','outerposition',[0.5 0 0.5 0.5]);
+    'units','normalized','outerposition',[0 0 1 1]);
 
 cwt(data,'FilterBank',fb);
