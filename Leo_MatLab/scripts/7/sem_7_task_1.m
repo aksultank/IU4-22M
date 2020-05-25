@@ -79,7 +79,7 @@ figure('Name','Daubechies family','units','normalized',...
 for i = 1:family_counter
     dbN = strcat('db',string(i));
     fb = dwtfilterbank('Wavelet',dbN,'SignalLength',length(ts),'Level',10,'SamplingFrequency',fs);
-    [psiw, tw] = wavelets(fb);
+	[psiw, tw] = wavelets(fb);
     plot(ts, psiw(10,:)), hold on;
     grid minor;
 end
