@@ -1,7 +1,6 @@
 clear, clc, close all;
 
-fs = 200;
-freq_part_cnt = 5;
+fs = 500;
 
 fs1 = 3;
 fs2 = 4;
@@ -9,33 +8,31 @@ fs3 = 5;
 fs4 = 7;
 fs5 = 12;
 
+ts_tmp = 0: 1/fs : 1-1/fs;
+len_ts_unit = length(ts_tmp);
+data(0*len_ts_unit+1:14*len_ts_unit) = 0;
+ts = 0: 1/fs : 14-1/fs;
+n = length(ts);
+
 ts1 = 0: 1/fs : 3-1/fs;
-len_ts1 = length(ts1);
-data(1:len_ts1)...
-    = sin(2*pi*fs1*ts1);
+data(0*len_ts_unit+1:3*len_ts_unit)...
+    = data(0*len_ts_unit+1:3*len_ts_unit) + sin(2*pi*fs1*ts1);
 
 ts2 = 1: 1/fs : 8-1/fs;
-len_ts2 = length(ts2);
-data(len_ts1+1:len_ts1+len_ts2)...
-    = sin(2*pi*fs2*ts2);
+data(1*len_ts_unit+1:8*len_ts_unit)...
+    = data(1*len_ts_unit+1:8*len_ts_unit) + sin(2*pi*fs2*ts2);
 
 ts3 = 6: 1/fs : 10-1/fs;
-len_ts3 = length(ts3);
-data(len_ts1+len_ts2+1:len_ts1+len_ts2+len_ts3)...
-    = sin(2*pi*fs3*ts3);
+data(6*len_ts_unit+1:10*len_ts_unit)...
+    = data(6*len_ts_unit+1:10*len_ts_unit) + sin(2*pi*fs3*ts3);
 
 ts4 = 11: 1/fs : 12-1/fs;
-len_ts4 = length(ts4);
-data(len_ts1+len_ts2+len_ts3+1:len_ts1+len_ts2+len_ts3+len_ts4)...
-    = sin(2*pi*fs4*ts4);
+data(11*len_ts_unit+1:12*len_ts_unit)...
+    = data(11*len_ts_unit+1:12*len_ts_unit) + sin(2*pi*fs4*ts4);
 
 ts5 = 11: 1/fs : 14-1/fs;
-len_ts5 = length(ts5);
-data(len_ts1+len_ts2+len_ts3+len_ts4+1:len_ts1+len_ts2+len_ts3...
-    +len_ts4+len_ts5) = sin(2*pi*fs5*ts5);
-
-ts = [ts1 ts2 ts3 ts4 ts5];
-n = length(ts);
+data(11*len_ts_unit+1:14*len_ts_unit)...
+    = data(11*len_ts_unit+1:14*len_ts_unit) + sin(2*pi*fs5*ts5);
 
 figure('Name','Spectral analysis, signal & FFT','units','normalized',...
     'outerposition',[0 0 1 1]);
@@ -51,13 +48,13 @@ data_spectr = 2*abs(fft(data))/n;
 fs_spectr = 0 : fs/n : fs-fs/n;
 
 subplot(2,1,2);
-stem(fs_spectr(1:length(fs_spectr)/5), data_spectr(1:length(fs_spectr)/5));
+stem(fs_spectr(1:length(fs_spectr)/10), data_spectr(1:length(fs_spectr)/10));
 grid minor;
 title('Spectr of signal');
 xlabel('Frequency');
 ylabel('Amplitude');
 
-fb = cwtfilterbank('SignalLength',length(data),'SamplingFrequency',fs,...
+fb = cwtfilterbank('SignalLength',n,'SamplingFrequency',fs,...
     'FrequencyLimits',[fs1 fs5]);
 
 figure('Name','Spectral analysis, continous wavelet transform with fb',...
